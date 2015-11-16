@@ -1,0 +1,26 @@
+# Gradle Files #
+################
+.gradle
+.m2
+
+
+# Build output directies #
+##########################
+/build
+
+
+# IntelliJ specific files/directories #
+#######################################
+out
+.idea
+*.ipr
+*.iws
+*.iml
+
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db

@@ -1,0 +1,195 @@
+---
+tags: [gradle, spring-boot, jpa, rest, hateoas, restdocs]
+projects: [spring-boot, spring-data, spring-hateoas, spring-restdocs]
+---
+:spring_boot_version: 1.2.7.RELEASE
+:toc:
+:icons: font
+:source-highlighter: prettify
+
+This guide walks you through the process of building RESTful services using Spring. This is a bookmarks service example that adopts http://spring.io/guides/tutorials/bookmarks/[Building REST services with Spring], applies some refactoring and builds on it by writing tests to verify HATEOAS responses. Example takes advantage of the http://projects.spring.io/spring-restdocs/[Spring REST Dcos] to document the REST APIs for the service.
+
+== What are we building
+
+Example models a bookmark service. It simply collects a URI, and a description where all bookmarks belong to a user account. This relationship is modeled using JPA and http://projects.spring.io/spring-data-jpa[Spring Data JPA] repositories in the model module. Our application will use http://projects.spring.io/spring-boot/[Spring Boot]. A Spring Boot application is, at a minimum, a _public static void main_ entry-point and the _@EnableAutoConfiguration_ annotation. This tells Spring Boot to help out, wherever possible.
+
+== Documenting our REST API
+
+We are using http://projects.spring.io/spring-restdocs/[Spring REST Docs] to document our RESTful services. Spring REST Docs uses http://asciidoctor.org/[Asciidoctor], a high quality hand-written documentation tool, and applies test driven approach to help guarantee the accuracy of service’s documentation. Spring REST Docs makes use of snippets produced by tests written with Spring MVC Test.
+
+=== Build Configuration
+* Apply the Asciidoctor plugin
+
+[source,groovy]
+----
+plugins { id "org.asciidoctor.convert" version "1.5.2" }
+----
+
+* Add a dependency on _spring-restdocs-mockmvc_ in the testCompile configuration
+
+[source,groovy]
+----
+dependencies { testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc:1.0.0.RC1' }
+----
+
+* Configure a property to define the output location for generated snippets
+
+[source,groovy]
+----
+ext { snippetsDir = file('build/generated-snippets') }
+----
+
+* Configure the test task to add the snippets directory as an output
+
+[source,groovy]
+----
+test { outputs.dir snippetsDir }
+----
+
+* Configure the _asciidoctor_ task
+** Define the source _adoc_ templates directory for Asciidoctor to generate the _html_ files from
+** Define an attribute named snippets that can be used when including the generated snippets in your documentation
+** Configure the snippets directory as an input
+** Make the task depend on the test task so that the tests are run before the documentation is created
+
+[source,groovy]
+----
+asciidoctor {
+    sourceDir 'src/main/asciidoc'
+    attributes 'snippets': snippetsDir
+    inputs.dir snippetsDir
+    dependsOn test
+}
+----
+
+And that is it. Really. All the tests written for the service in this test class will produce three snippets by default:
+
+*	build/generated-snippets/curl-request.adoc
+*	build/generated-snippets/http-request.adoc
+*	build/generated-snippets/http-response.adoc
+
+To explore all the more _RestDocumentation_ and _RestDocumentationResultHandler_ please visit http://docs.spring.io/spring-restdocs/docs/1.0.0.RELEASE/reference/html5/[reference documentation] for http://projects.spring.io/spring-restdocs/[Spring REST Docs] project.
+
+=== Packaging
+
+Depending on documentation deployment strategy, it can be packaged inside the jar/war distribution or copied to e.g. a documentation server. To package it into the jar's static directory simply make the Gradle 'jar' task depend on Gradle 'asciidoctor' task and specify the location in the package where the documentation is preferred to be copied into. When the project is built Asciidoctor originally generates the documentation in the build folder under _src/main/asciidoc_.
+
+[source,groovy]
+----
+jar {
+    dependsOn asciidoctor
+    from ("${asciidoctor.outputDir}/html5")
+    {
+        into 'static/docs'
+    }
+}
+----
+
+=== Generating the documentation snippets
+
+As described earlier Spring REST Docs uses Spring's MVC Test framework to make requests to the service that you are documenting. It then produces documentation snippets for the result's request and response in specified location for the _adoc_ templates that live under _/src/main/asciidoc_ to utilize these auto-generated snippets. Spring MVC test needs to be setup in the following manner:
+
+[source,java]
+----
+@Rule
+public final RestDocumentation restDocumentation = new RestDocumentation("build/generated-snippets");
+
+private RestDocumentationResultHandler document;
+
+@Autowired
+private WebApplicationContext context;
+
+private MockMvc mockMvc;
+
+@Before
+public void setUp() {
+  this.document = document(
+    "{method-name}",
+    preprocessRequest(prettyPrint()),
+    preprocessResponse(prettyPrint())
+  );
+  this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context)
+    .apply(documentationConfiguration(this.restDocumentation))
+    .alwaysDo(this.document)
+    .build();
+}
+----
+
+== Making the application executable
+
+Although it is possible to package this service as a traditional WAR file for deployment to an external application server, the simpler approach demonstrated below creates a standalone application. You package everything in a single, executable JAR file, driven by a good old Java _main()_ method. Along the way, you use Spring's support for embedding the Tomcat servlet container as the HTTP runtime, instead of deploying to an external instance.
+
+
+_src/main/java/com/df/gs/rest/RestServicesTemplateApplication.java_
+[source,java]
+----
+include::src/main/java/com/df/gs/rest/RestServicesTemplateApplication.java[]
+----
+
+_@SpringBootApplication_ is a convenience annotation that adds all of the following:
+
+- _@Configuration_ tags the class as a source of bean definitions for the application context.
+- _@EnableAutoConfiguration_ tells Spring Boot to start adding beans based on classpath settings, other beans, and various property settings.
+- Normally you would add _@EnableWebMvc_ for a Spring MVC app, but Spring Boot adds it automatically when it sees **spring-webmvc** on the classpath. This flags the application as a web application and activates key behaviors such as setting up a _DispatcherServlet_.
+- _@ComponentScan_ tells Spring to look for other components, configurations, and services in the _com.df.gs.rest_ package.
+
+The _main()_ method uses Spring Boot's _SpringApplication.run()_ method to launch an application. Did you notice that there wasn't a single line of XML? No **web.xml** file either. This web application is 100% pure Java and you didn't have to deal with configuring any plumbing or infrastructure.
+
+Logging output is displayed. The service should be up and running within a few seconds.
+
+== Using Spring profiles
+
+This example is setup to have two profiles:
+
+- **default** profile uses embedded HSQLDB and logs at _DEBUG_ level for the service
+- **dev** profile connects to a local installation of http://www.postgresql.org/[PostgreSQL] and logging level is set to _INFO_
+
+Notice the difference between database and logging levels in _application.properties_ and _application-dev.properties_.
+
+== Testing the service
+
+Now that the service is up, visit http://localhost:8080/mohammadali/bookmarks, where you should see:
+
+[source,json]
+----
+{
+  "_embedded": {
+    "bookmarkResources": [
+      {
+        "bookmark": {
+          "uri": "http://www.google.com",
+          "description": "Google search"
+        },
+        "_links": {
+          "bookmarks": {
+            "href": "http://localhost:8080/mohammadali/bookmarks"
+          },
+          "self": {
+            "href": "http://localhost:8080/mohammadali/bookmarks/1"
+          }
+        }
+      },
+      {
+        "bookmark": {
+          "uri": "http://www.youtube.com",
+          "description": "YouTube"
+        },
+        "_links": {
+          "bookmarks": {
+            "href": "http://localhost:8080/mohammadali/bookmarks"
+          },
+          "self": {
+            "href": "http://localhost:8080/mohammadali/bookmarks/2"
+          }
+        }
+      }
+    ]
+  }
+}
+----
+
+If you use **Postman** for testing web services, please find Postman collection and environment the collection depends on under _src/main/test/resources/postman_. All you need to do is to import them in to Postman and that's it, they are ready to test this service.
+
+=== Spring Boot Actuator
+
+Notice that we the service has a dependency on http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/production-ready.html[Spring Boot Actuator]. Spring Boot detects the dependency and magically adds production-ready features to help you monitor and manage your application. You can also try & test these e.g. to see the status of the application try _http://<host>/health_

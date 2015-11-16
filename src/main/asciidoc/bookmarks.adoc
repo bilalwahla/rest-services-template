@@ -1,0 +1,48 @@
+= Bookmarks Web Services interface definition
+Bilal Wahla
+:toc: right
+:imagesdir: ./images
+:doctype: book
+:linkattrs:
+:icons: font
+:source-highlighter: highlightjs
+
+== Bookmarks
+
+=== GET - Read all bookmarks
+
+Get all bookmarks for a given account.
+
+==== Example request
+
+include::{snippets}/bookmarks/read-bookmarks/curl-request.adoc[]
+
+==== Example response
+
+include::{snippets}/bookmarks/read-bookmarks/http-response.adoc[]
+
+=== GET - Read one bookmark
+
+Get a given bookmark for a given account.
+
+==== Example request
+
+include::{snippets}/bookmarks/read-bookmark/curl-request.adoc[]
+
+==== Example response
+
+include::{snippets}/bookmarks/read-bookmark/http-response.adoc[]
+
+=== POST - Add a bookmark
+
+Add a bookmark for a given account
+
+==== Example request
+
+include::{snippets}/bookmarks/add-bookmark/curl-request.adoc[]
+
+==== Example response
+
+include::{snippets}/bookmarks/add-bookmark/http-response.adoc[]
+
+include::change-history.adoc[]

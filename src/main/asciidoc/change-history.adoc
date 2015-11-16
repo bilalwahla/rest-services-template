@@ -1,0 +1,13 @@
+== Change History
+
+.Change History
+[cols="1,1,1,2"]
+|===
+|Version number|Date|Author|Changes
+
+| 0.0.1
+| 02/11/2015
+| Bilal Wahla
+| Initial incorporation of Spring Rest Docs in to the project.
+
+|===

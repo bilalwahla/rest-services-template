@@ -1,0 +1,30 @@
+{
+	"id": "c7d40d26-414e-6722-ae93-5189aee5dad4",
+	"name": "local",
+	"values": [
+		{
+			"key": "username",
+			"value": "mohammadali",
+			"type": "text",
+			"name": "username",
+			"enabled": true
+		},
+		{
+			"key": "bookmarkId",
+			"value": "1",
+			"type": "text",
+			"name": "bookmarkId",
+			"enabled": true
+		},
+		{
+			"key": "host",
+			"value": "http://localhost:8080",
+			"type": "text",
+			"name": "host",
+			"enabled": true
+		}
+	],
+	"timestamp": 1447680173576,
+	"synced": false,
+	"syncedFilename": ""
+}
