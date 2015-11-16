@@ -1,8 +1,5 @@
 ---
 tags: [gradle, spring-boot, spring-boot-actuator, jpa, rest, hateoas, restdocs]
----
-
----
 projects: [spring-boot, spring-boot-actuator, spring-data, spring-hateoas, spring-restdocs]
 ---
 
