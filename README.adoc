@@ -1,7 +1,11 @@
 ---
-tags: [gradle, spring-boot, jpa, rest, hateoas, restdocs]
-projects: [spring-boot, spring-data, spring-hateoas, spring-restdocs]
+tags: [gradle, spring-boot, spring-boot-actuator, jpa, rest, hateoas, restdocs]
 ---
+
+---
+projects: [spring-boot, spring-boot-actuator, spring-data, spring-hateoas, spring-restdocs]
+---
+
 :spring_boot_version: 1.2.7.RELEASE
 :toc:
 :icons: font
@@ -120,7 +124,7 @@ public void setUp() {
 Although it is possible to package this service as a traditional WAR file for deployment to an external application server, the simpler approach demonstrated below creates a standalone application. You package everything in a single, executable JAR file, driven by a good old Java _main()_ method. Along the way, you use Spring's support for embedding the Tomcat servlet container as the HTTP runtime, instead of deploying to an external instance.
 
 
-`src/main/java/com/df/gs/rest/RestServicesTemplateApplication.java`
+_src/main/java/com/df/gs/rest/RestServicesTemplateApplication.java_
 [source,java]
 ----
 include::src/main/java/com/df/gs/rest/RestServicesTemplateApplication.java[]
