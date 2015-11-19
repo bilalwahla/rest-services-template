@@ -69,11 +69,11 @@ And that is it. Really. All the tests written for the service in this test class
 *	build/generated-snippets/http-request.adoc
 *	build/generated-snippets/http-response.adoc
 
-To explore all the more _RestDocumentation_ and _RestDocumentationResultHandler_ please visit http://docs.spring.io/spring-restdocs/docs/1.0.0.RELEASE/reference/html5/[reference documentation] for http://projects.spring.io/spring-restdocs/[Spring REST Docs] project.
+To explore all the more _RestDocumentation_ and _RestDocumentationResultHandler_ has to offer, please visit http://docs.spring.io/spring-restdocs/docs/1.0.0.RELEASE/reference/html5/[reference documentation] for http://projects.spring.io/spring-restdocs/[Spring REST Docs] project.
 
 === Packaging
 
-Depending on documentation deployment strategy, it can be packaged inside the jar/war distribution or copied to e.g. a documentation server. To package it into the jar's static directory simply make the Gradle 'jar' task depend on Gradle 'asciidoctor' task and specify the location in the package where the documentation is preferred to be copied into. When the project is built Asciidoctor originally generates the documentation in the build folder under _src/main/asciidoc_.
+Depending on documentation deployment strategy, it can be packaged inside the jar/war distribution or copied to e.g. a centralised documentation server on the intranet. To package it into the jar's static directory simply make the Gradle 'jar' task depend on Gradle 'asciidoctor' task and specify the location in the package where the documentation is preferred to be copied into. When the project is built Asciidoctor originally generates the documentation in the build folder under _src/main/asciidoc_.
 
 [source,groovy]
 ----
@@ -88,7 +88,7 @@ jar {
 
 === Generating the documentation snippets
 
-As described earlier Spring REST Docs uses Spring's MVC Test framework to make requests to the service that you are documenting. It then produces documentation snippets for the result's request and response in specified location for the _adoc_ templates that live under _/src/main/asciidoc_ to utilize these auto-generated snippets. Spring MVC test needs to be setup in the following manner:
+As described earlier Spring REST Docs uses Spring's MVC Test framework to make requests to the service that you are documenting. It then produces documentation snippets for the result's request and response in specified location (for the _adoc_ templates that live under _/src/main/asciidoc_ to utilize). Spring MVC test needs to be setup in the following manner:
 
 [source,java]
 ----
@@ -147,9 +147,9 @@ This example is setup to have two profiles:
 
 Notice the difference between database and logging levels in _application.properties_ and _application-dev.properties_.
 
-== Testing the service
+== Manually testing the service
 
-Now that the service is up, visit http://localhost:8080/mohammadali/bookmarks, where you should see:
+Now that the service is up, visit http://localhost:8080/mohammadali/bookmarks, and you should see the following response:
 
 [source,json]
 ----
@@ -189,8 +189,8 @@ Now that the service is up, visit http://localhost:8080/mohammadali/bookmarks, w
 }
 ----
 
-If you use **Postman** for testing web services, please find Postman collection and environment the collection depends on under _src/main/test/resources/postman_. All you need to do is to import them in to Postman and that's it, they are ready to test this service.
+If you use **Postman** for testing web services, please find Postman collection and environment it depends on under _src/main/test/resources/postman_. All you need to do is to import them in to Postman and that's it, they are ready to test this service.
 
 === Spring Boot Actuator
 
-Notice that we the service has a dependency on http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/production-ready.html[Spring Boot Actuator]. Spring Boot detects the dependency and magically adds production-ready features to help you monitor and manage your application. You can also try & test these e.g. to see the status of the application try _http://<host>/health_
+Notice that the service has a dependency on http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/html/production-ready.html[Spring Boot Actuator]. Spring Boot detects the dependency and magically adds production-ready features to help you monitor and manage your application. You can also try & test these e.g. to see the status of the application try _http://<host>/health_. For more visit its http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready[reference documentation].
