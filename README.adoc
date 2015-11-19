@@ -30,7 +30,7 @@ plugins { id "org.asciidoctor.convert" version "1.5.2" }
 
 [source,groovy]
 ----
-dependencies { testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc:1.0.0.RC1' }
+dependencies { testCompile 'org.springframework.restdocs:spring-restdocs-mockmvc:1.0.0.RELEASE' }
 ----
 
 * Configure a property to define the output location for generated snippets
