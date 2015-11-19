@@ -14,7 +14,7 @@ This guide walks you through the process of building RESTful services using Spri
 
 Example models a bookmark service. It simply collects a URI, and a description where all bookmarks belong to a user account. This relationship is modeled using JPA and http://projects.spring.io/spring-data-jpa[Spring Data JPA] repositories in the model module. Our application will use http://projects.spring.io/spring-boot/[Spring Boot]. A Spring Boot application is, at a minimum, a _public static void main_ entry-point and the _@EnableAutoConfiguration_ annotation. This tells Spring Boot to help out, wherever possible.
 
-== Documenting our REST API
+== Documenting the REST API
 
 Example is using http://projects.spring.io/spring-restdocs/[Spring REST Docs] to document the RESTful services. Spring REST Docs uses http://asciidoctor.org/[Asciidoctor], a high quality hand-written documentation tool, and applies **test driven approach to help guarantee the accuracy of service’s documentation**. Spring REST Docs makes use of snippets produced by tests written with Spring MVC Test.
 
