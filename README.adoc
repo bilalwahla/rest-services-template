@@ -10,13 +10,13 @@ projects: [spring-boot, spring-boot-actuator, spring-data, spring-hateoas, sprin
 
 This guide walks you through the process of building RESTful services using Spring. This is a bookmarks service example that adopts http://spring.io/guides/tutorials/bookmarks/[Building REST services with Spring], applies some refactoring and builds on it by writing tests to verify HATEOAS responses. Example takes advantage of the http://projects.spring.io/spring-restdocs/[Spring REST Dcos] to document the REST APIs for the service.
 
-== What are we building
+== What is this template
 
 Example models a bookmark service. It simply collects a URI, and a description where all bookmarks belong to a user account. This relationship is modeled using JPA and http://projects.spring.io/spring-data-jpa[Spring Data JPA] repositories in the model module. Our application will use http://projects.spring.io/spring-boot/[Spring Boot]. A Spring Boot application is, at a minimum, a _public static void main_ entry-point and the _@EnableAutoConfiguration_ annotation. This tells Spring Boot to help out, wherever possible.
 
 == Documenting our REST API
 
-We are using http://projects.spring.io/spring-restdocs/[Spring REST Docs] to document our RESTful services. Spring REST Docs uses http://asciidoctor.org/[Asciidoctor], a high quality hand-written documentation tool, and applies test driven approach to help guarantee the accuracy of service’s documentation. Spring REST Docs makes use of snippets produced by tests written with Spring MVC Test.
+Example is using http://projects.spring.io/spring-restdocs/[Spring REST Docs] to document the RESTful services. Spring REST Docs uses http://asciidoctor.org/[Asciidoctor], a high quality hand-written documentation tool, and applies **test driven approach to help guarantee the accuracy of service’s documentation**. Spring REST Docs makes use of snippets produced by tests written with Spring MVC Test.
 
 === Build Configuration
 * Apply the Asciidoctor plugin
@@ -73,7 +73,7 @@ To explore all the more _RestDocumentation_ and _RestDocumentationResultHandler_
 
 === Packaging
 
-Depending on documentation deployment strategy, it can be packaged inside the jar/war distribution or copied to e.g. a centralised documentation server on the intranet. To package it into the jar's static directory simply make the Gradle 'jar' task depend on Gradle 'asciidoctor' task and specify the location in the package where the documentation is preferred to be copied into. When the project is built Asciidoctor originally generates the documentation in the build folder under _src/main/asciidoc_.
+Depending on documentation deployment strategy, documentation can be packaged inside the jar/war distribution or copied to e.g. a centralised documentation server on the intranet. To package it into the jar's static directory simply make the Gradle 'jar' task depend on Gradle 'asciidoctor' task and specify the location in the package where the documentation is preferred to be copied to. When the project is built Asciidoctor originally generates the documentation in the build folder under _src/main/asciidoc_.
 
 [source,groovy]
 ----
