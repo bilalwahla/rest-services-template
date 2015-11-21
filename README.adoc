@@ -189,7 +189,7 @@ Now that the service is up, visit http://localhost:8080/mohammadali/bookmarks, a
 }
 ----
 
-If you use **Postman** for testing web services, please find Postman collection and environment it depends on under _src/main/test/resources/postman_. All you need to do is to import them in to Postman and that's it, they are ready to test the service.
+If you use https://www.getpostman.com[Postman] for testing web services, please find Postman collection and environment it depends on under _src/main/test/resources/postman_. All you need to do is to import them in to Postman and that's it, they are ready to test the service.
 
 === Spring Boot Actuator
 
