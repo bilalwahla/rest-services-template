@@ -12,11 +12,11 @@ This guide walks you through the process of building RESTful services using Spri
 
 == What is this template
 
-Example models a bookmark service. It simply collects a URI, and a description where all bookmarks belong to a user account. This relationship is modeled using JPA and http://projects.spring.io/spring-data-jpa[Spring Data JPA] repositories in the model module. Our application will use http://projects.spring.io/spring-boot/[Spring Boot]. A Spring Boot application is, at a minimum, a _public static void main_ entry-point and the _@EnableAutoConfiguration_ annotation. This tells Spring Boot to help out, wherever possible.
+Example models a RESTful bookmark service. It simply collects a URI, and a description where all bookmarks belong to a user account. This relationship is modeled using JPA and http://projects.spring.io/spring-data-jpa[Spring Data JPA] repositories in the model module. Our application will use http://projects.spring.io/spring-boot/[Spring Boot]. A Spring Boot application is, at a minimum, a _public static void main_ entry-point and the _@EnableAutoConfiguration_ annotation. This tells Spring Boot to help out, wherever possible.
 
 == Documenting the REST API
 
-Example is using http://projects.spring.io/spring-restdocs/[Spring REST Docs] to document the RESTful services. Spring REST Docs uses http://asciidoctor.org/[Asciidoctor], a high quality hand-written documentation tool, and applies **test driven approach to help guarantee the accuracy of service’s documentation**. Spring REST Docs makes use of snippets produced by tests written with Spring MVC Test.
+Example is using http://projects.spring.io/spring-restdocs/[Spring REST Docs] to document the RESTful service. Spring REST Docs uses http://asciidoctor.org/[Asciidoctor], a high quality hand-written documentation tool, and applies **test driven approach to help guarantee the accuracy of service’s documentation**. Spring REST Docs makes use of snippets produced by tests written with Spring MVC Test.
 
 === Build Configuration
 * Apply the Asciidoctor plugin
@@ -189,7 +189,7 @@ Now that the service is up, visit http://localhost:8080/mohammadali/bookmarks, a
 }
 ----
 
-If you use **Postman** for testing web services, please find Postman collection and environment it depends on under _src/main/test/resources/postman_. All you need to do is to import them in to Postman and that's it, they are ready to test this service.
+If you use **Postman** for testing web services, please find Postman collection and environment it depends on under _src/main/test/resources/postman_. All you need to do is to import them in to Postman and that's it, they are ready to test the service.
 
 === Spring Boot Actuator
 
