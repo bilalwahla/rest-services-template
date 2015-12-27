@@ -22,9 +22,16 @@
 			"type": "text",
 			"name": "host",
 			"enabled": true
+		},
+		{
+			"key": "unknownUsername",
+			"value": "unknownuser",
+			"type": "text",
+			"name": "unknownUsername",
+			"enabled": true
 		}
 	],
-	"timestamp": 1447680173576,
+	"timestamp": 1451247539920,
 	"synced": false,
 	"syncedFilename": ""
 }

@@ -21,6 +21,10 @@ include::{snippets}/bookmarks/read-bookmarks/curl-request.adoc[]
 
 include::{snippets}/bookmarks/read-bookmarks/http-response.adoc[]
 
+==== Example response for an unknown user account
+
+include::{snippets}/bookmarks/user-not-found/http-response.adoc[]
+
 === GET - Read one bookmark
 
 Get a given bookmark for a given account.
