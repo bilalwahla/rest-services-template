@@ -10,4 +10,9 @@
 | Bilal Wahla
 | Initial incorporation of Spring Rest Docs in to the project.
 
+| 0.0.2
+| 03/12/2016
+| Bilal Wahla
+| Added example request and response for getting all bookmarks for an unknown user.
+
 |===

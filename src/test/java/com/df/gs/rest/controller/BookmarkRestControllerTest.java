@@ -86,7 +86,7 @@ public class BookmarkRestControllerTest {
   @Test
   public void userNotFound() throws Exception {
     new ObjectMapper().writeValue(bookmarkJson, new Bookmark());
-    mockMvc.perform(post("/george/bookmarks/").content(bookmarkJson.toString()).contentType(contentType))
+    mockMvc.perform(get("/george/bookmarks/"))
         .andExpect(status().isNotFound());
   }
 

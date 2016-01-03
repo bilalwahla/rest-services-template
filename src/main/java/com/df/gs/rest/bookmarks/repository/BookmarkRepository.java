@@ -2,7 +2,6 @@ package com.df.gs.rest.bookmarks.repository;
 
 import com.df.gs.rest.bookmarks.model.Bookmark;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.df.gs.rest.bookmarks.model.Account;
 
 import java.util.Collection;
 

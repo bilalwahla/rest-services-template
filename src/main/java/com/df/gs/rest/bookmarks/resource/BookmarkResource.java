@@ -3,7 +3,6 @@ package com.df.gs.rest.bookmarks.resource;
 import com.df.gs.rest.bookmarks.controller.BookmarkRestController;
 import com.df.gs.rest.bookmarks.model.Bookmark;
 import org.springframework.hateoas.ResourceSupport;
-import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;

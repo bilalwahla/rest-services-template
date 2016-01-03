@@ -16,7 +16,6 @@ import com.df.gs.rest.bookmarks.repository.BookmarkRepository;
 import com.df.gs.rest.bookmarks.resource.BookmarkResource;
 
 import java.net.URI;
-import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
