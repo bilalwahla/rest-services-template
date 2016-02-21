@@ -1,15 +1,15 @@
 buildscript {
-  ext {
-    springBootVersion = '1.2.7.RELEASE'
-  }
-  repositories {
-    jcenter()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    classpath('org.asciidoctor:asciidoctor-gradle-plugin:1.5.2')
-    classpath('io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE')
-  }
+    ext {
+        springBootVersion = '1.2.7.RELEASE'
+    }
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('org.asciidoctor:asciidoctor-gradle-plugin:1.5.2')
+        classpath('io.spring.gradle:dependency-management-plugin:0.5.2.RELEASE')
+    }
 }
 
 apply plugin: 'java'
@@ -19,11 +19,11 @@ apply plugin: 'org.asciidoctor.convert'
 apply plugin: 'io.spring.dependency-management'
 
 ext {
-  snippetsDir = file('build/generated-snippets')
+    snippetsDir = file('build/generated-snippets')
 }
 
 test {
-  outputs.dir snippetsDir
+    outputs.dir snippetsDir
 }
 
 asciidoctor {
@@ -34,28 +34,28 @@ asciidoctor {
 }
 
 jar {
-  baseName = 'rest-services-template'
-  version = '1.0.0-SNAPSHOT'
-  dependsOn asciidoctor
-  from("${asciidoctor.outputDir}/html5") {
-    into 'static/docs'
-  }
+    baseName = 'rest-services-template'
+    version = '1.0.0-SNAPSHOT'
+    dependsOn asciidoctor
+    from("${asciidoctor.outputDir}/html5") {
+        into 'static/docs'
+    }
 }
 
 dependencies {
-  compile('org.springframework.boot:spring-boot-starter-actuator')
-  compile('org.springframework.boot:spring-boot-starter-data-jpa')
-  compile('org.springframework.boot:spring-boot-starter-data-rest')
-  compile('org.springframework.boot:spring-boot-starter-hateoas')
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-data-rest')
+    compile('org.springframework.boot:spring-boot-starter-hateoas')
 
-  compile('com.jayway.jsonpath:json-path')
-  compile('org.postgresql:postgresql:9.4-1201-jdbc41')
-  compile('com.h2database:h2')
+    compile('com.jayway.jsonpath:json-path')
+    compile('org.postgresql:postgresql:9.4-1201-jdbc41')
+    compile('com.h2database:h2')
 
-  testCompile('org.springframework.boot:spring-boot-starter-test')
-  testCompile('org.springframework.restdocs:spring-restdocs-mockmvc:1.0.0.RELEASE')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.springframework.restdocs:spring-restdocs-mockmvc:1.0.0.RELEASE')
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.7'
+    gradleVersion = '2.7'
 }

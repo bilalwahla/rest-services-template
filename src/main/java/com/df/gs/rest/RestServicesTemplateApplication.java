@@ -17,10 +17,11 @@ public class RestServicesTemplateApplication {
   /**
    * This simply sets up small amount of data in the connected database for quick testing.
    *
-   * @param accountRepository
-   * @param bookmarkRepository
-   * @return
+   * @param accountRepository account repository
+   * @param bookmarkRepository bookmark repository
+   * @return command line runner
    */
+  @SuppressWarnings("SpringJavaAutowiringInspection")
   @Bean
   CommandLineRunner init(AccountRepository accountRepository,
                          BookmarkRepository bookmarkRepository) {
