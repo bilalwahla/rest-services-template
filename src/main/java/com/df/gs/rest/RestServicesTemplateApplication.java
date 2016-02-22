@@ -21,7 +21,6 @@ public class RestServicesTemplateApplication {
    * @param bookmarkRepository bookmark repository
    * @return command line runner
    */
-  @SuppressWarnings("SpringJavaAutowiringInspection")
   @Bean
   CommandLineRunner init(AccountRepository accountRepository,
                          BookmarkRepository bookmarkRepository) {

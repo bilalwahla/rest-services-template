@@ -44,14 +44,12 @@ public class BookmarkRestControllerTest {
   private MockMvc mockMvc;
   private StringWriter bookmarkJson = new StringWriter();
   private String username = "mohammadali";
-  private String password = "password";
   private Account account;
   private List<Bookmark> bookmarkList = new ArrayList<>();
 
   @Rule
   public
   final RestDocumentation restDocumentation = new RestDocumentation("build/generated-snippets/bookmarks");
-  private RestDocumentationResultHandler restDocumentationResultHandler;
 
   @Autowired
   private BookmarkRepository bookmarkRepository;
@@ -64,20 +62,21 @@ public class BookmarkRestControllerTest {
 
   @Before
   public void setup() throws Exception {
-    this.restDocumentationResultHandler = document(
-        "{method-name}",
-        preprocessRequest(prettyPrint()),
-        preprocessResponse(prettyPrint())
+    RestDocumentationResultHandler restDocumentationResultHandler = document(
+            "{method-name}",
+            preprocessRequest(prettyPrint()),
+            preprocessResponse(prettyPrint())
     );
 
     this.mockMvc = webAppContextSetup(webApplicationContext)
         .apply(documentationConfiguration(this.restDocumentation))
-        .alwaysDo(this.restDocumentationResultHandler)
+        .alwaysDo(restDocumentationResultHandler)
         .build();
 
     this.bookmarkRepository.deleteAllInBatch();
     this.accountRepository.deleteAllInBatch();
 
+    String password = "password";
     this.account = accountRepository.save(new Account(username, password));
     this.bookmarkList.add(bookmarkRepository.save(new Bookmark(account, "http://bookmark.com/1/" + username, "A description 1")));
     this.bookmarkList.add(bookmarkRepository.save(new Bookmark(account, "http://bookmark.com/2/" + username, "A description 2")));
