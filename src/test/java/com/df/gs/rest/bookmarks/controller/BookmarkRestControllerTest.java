@@ -1,4 +1,4 @@
-package com.df.gs.rest.controller;
+package com.df.gs.rest.bookmarks.controller;
 
 import com.df.gs.rest.RestServicesTemplateApplication;
 import com.df.gs.rest.bookmarks.model.Account;
