@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/bilalwahla/rest-services-template.svg?branch=master)](https://travis-ci.org/bilalwahla/rest-services-template) [![codecov](https://codecov.io/gh/bilalwahla/rest-services-template/branch/master/graph/badge.svg)](https://codecov.io/gh/bilalwahla/rest-services-template)
+
 ---
 tags: [gradle, spring-boot, spring-boot-actuator, jpa, rest, hateoas, restdocs]
 projects: [spring-boot, spring-boot-actuator, spring-data, spring-hateoas, spring-restdocs]

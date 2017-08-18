@@ -11,6 +11,6 @@ branches:
   only:
   - master
 script:
-- ./gradlew clean build
+- ./gradlew jacocoTestReport
 after_success:
 - bash <(curl -s https://codecov.io/bash)
