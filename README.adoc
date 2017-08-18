@@ -1,6 +1,3 @@
-image:https://travis-ci.org/bilalwahla/rest-services-template.svg["Build Status", link="https://travis-ci.org/bilalwahla/rest-services-template"] image:https://codecov.io/gh/bilalwahla/rest-services-template/branch/master/graph/badge.svg["codecov", link="https://codecov.io/gh/bilalwahla/rest-services-template"]
-
-
 ---
 tags: [gradle, spring-boot, spring-boot-actuator, jpa, rest, hateoas, restdocs]
 projects: [spring-boot, spring-boot-actuator, spring-data, spring-hateoas, spring-restdocs]
@@ -10,6 +7,8 @@ projects: [spring-boot, spring-boot-actuator, spring-data, spring-hateoas, sprin
 :toc:
 :icons: font
 :source-highlighter: prettify
+
+image:https://travis-ci.org/bilalwahla/rest-services-template.svg["Build Status", link="https://travis-ci.org/bilalwahla/rest-services-template"] image:https://codecov.io/gh/bilalwahla/rest-services-template/branch/master/graph/badge.svg["codecov", link="https://codecov.io/gh/bilalwahla/rest-services-template"]
 
 This guide walks you through the process of building RESTful services using Spring. This is a bookmarks service example that adopts http://spring.io/guides/tutorials/bookmarks/[Building REST services with Spring], applies some refactoring and builds on it by writing tests to verify HATEOAS responses. Example takes advantage of the http://projects.spring.io/spring-restdocs/[Spring REST Dcos] to document the REST APIs for the service.
 
