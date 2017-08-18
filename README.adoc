@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/bilalwahla/rest-services-template.svg?branch=master)](https://travis-ci.org/bilalwahla/rest-services-template) [![codecov](https://codecov.io/gh/bilalwahla/rest-services-template/branch/master/graph/badge.svg)](https://codecov.io/gh/bilalwahla/rest-services-template)
+image:https://travis-ci.org/bilalwahla/rest-services-template.svg["Build Status", link="https://travis-ci.org/bilalwahla/rest-services-template"] image:https://codecov.io/gh/bilalwahla/rest-services-template/branch/master/graph/badge.svg["codecov", link="https://codecov.io/gh/bilalwahla/rest-services-template"]
+
 
 ---
 tags: [gradle, spring-boot, spring-boot-actuator, jpa, rest, hateoas, restdocs]
